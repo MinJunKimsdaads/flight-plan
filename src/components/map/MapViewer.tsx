@@ -4,7 +4,7 @@ import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import { OSM } from "ol/source";
 import { useEffect, useRef } from "react";
-import {defaults as defaultControls, ScaleLine} from "ol/control";
+import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
 
