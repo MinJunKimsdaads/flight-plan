@@ -36,5 +36,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist  # React는 기본적으로 `build/` 폴더에 빌드됨
+          local-dir: dist/  # React는 기본적으로 `build/` 폴더에 빌드됨
           server-dir: /hosting/developkmj/html/flight-plan
