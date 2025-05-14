@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # main 브랜치에 푸시될 때만 실행
-    workflow_dispatch:  # 👈 수동 실행 허용
+  workflow_dispatch:  # 👈 수동 실행 허용
 
 jobs:
   build-and-deploy:
