@@ -1,12 +1,11 @@
 import { useMap } from "@/contexts/MapContext";
 import Map from "ol/Map";
 import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import { OSM } from "ol/source";
 import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
+import { standardLayer } from "@/sevices/maps/map";
 
 const MapViewer = () => {
     const mapRef = useRef<HTMLDivElement | null>(null);
@@ -17,9 +16,7 @@ const MapViewer = () => {
         const map = new Map({
             target: mapRef.current,
             layers: [
-                new TileLayer({
-                    source: new OSM(),
-                }),
+                standardLayer
             ],
             view: new View({
                 center: [0,0],
