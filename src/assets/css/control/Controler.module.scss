@@ -1,0 +1,14 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.controlerBox{
+    width: 400px;
+    height: 60px;
+    @include flex-between;
+    background-color: $dark-bg;
+    color: $dark-text;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}

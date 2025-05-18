@@ -3,15 +3,11 @@ import axios from "axios"
 import {AxiosResponse} from "axios"
 
 export const getAllAirplaneList = async(): Promise<AxiosResponse<any>> => {
-    const username = import.meta.env.VITE_OPENSKY_USERNAME;
-    const password = import.meta.env.VITE_OPENSKY_PASSWORD;
-    const basicAuth = btoa(`${username}:${password}`);
+    // const username = import.meta.env.VITE_OPENSKY_USERNAME;
+    // const password = import.meta.env.VITE_OPENSKY_PASSWORD;
+    // const basicAuth = btoa(`${username}:${password}`);
     try{
-        const res = await axios.get(ALL_AIRPLANE_ADDRESS,{
-            headers: {
-            'Authorization': `Basic ${basicAuth}`,
-            }
-        })
+        const res = await axios.get(ALL_AIRPLANE_ADDRESS)
         return res;
     } catch (error) {
         console.error("항공기 정보를 가져오는 데 실패했습니다:", error);

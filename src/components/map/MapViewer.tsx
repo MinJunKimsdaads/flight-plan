@@ -5,18 +5,23 @@ import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
-import { standardLayer } from "@/sevices/maps/map";
+import { cartoBasemaps, currentAirPlaneLayer, standardLayer } from "@/sevices/maps/map";
+import AircraftUpdater from "./AirplaneUpdater";
 
 const MapViewer = () => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const {setMap} = useMap();
+
+    const source = currentAirPlaneLayer.getSource();
 
     useEffect(()=>{
         if(!mapRef.current) return;
         const map = new Map({
             target: mapRef.current,
             layers: [
-                standardLayer
+                standardLayer,
+                cartoBasemaps,
+                currentAirPlaneLayer
             ],
             view: new View({
                 center: [0,0],
@@ -42,7 +47,11 @@ const MapViewer = () => {
         return ()=>map.setTarget(undefined);
     },[setMap]);
 
-    return <div ref={mapRef} style={{width:'100%', height:"100vh"}} />
+    return (
+        <div ref={mapRef} style={{width:'100%', height:"100vh"}}>
+            {source && <AircraftUpdater source={source}></AircraftUpdater>}
+        </div>
+    )
 };
 
 export default MapViewer;
