@@ -18,3 +18,5 @@ export const airCraftInfo = {
     position_source: 'position_source',
     category: 'category',
 };
+
+//공항 정보

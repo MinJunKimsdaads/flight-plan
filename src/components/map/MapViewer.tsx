@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
-import { cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/map";
+import { airportLayer, cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/map";
 import AircraftUpdater from "./AirplaneUpdater";
 import { fromLonLat } from "ol/proj";
 import { useAirplaneHoverStore } from "@/store/aircraftStore";
@@ -24,6 +24,7 @@ const MapViewer = () => {
             layers: [
                 standardLayer,
                 cartoBasemaps,
+                airportLayer,
                 currentAircraftLayer
             ],
             view: new View({
@@ -55,8 +56,6 @@ const MapViewer = () => {
             const hovered = features?.[0] || null;
 
             const {hoveredAircraft,setHoveredAircraft} = useAirplaneHoverStore.getState();
-
-            
             if (hovered !== hoveredAircraft) {
                 if (hoveredAircraft) {
                     (hoveredAircraft as Feature)?.set('hover', false);
