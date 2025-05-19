@@ -5,14 +5,17 @@ import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
-import { cartoBasemaps, currentAirPlaneLayer, standardLayer } from "@/sevices/maps/map";
+import { cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/map";
 import AircraftUpdater from "./AirplaneUpdater";
+import { fromLonLat } from "ol/proj";
+import { useAirplaneHoverStore } from "@/store/aircraftStore";
+import { Feature } from "ol";
 
 const MapViewer = () => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const {setMap} = useMap();
 
-    const source = currentAirPlaneLayer.getSource();
+    const source = currentAircraftLayer.getSource();
 
     useEffect(()=>{
         if(!mapRef.current) return;
@@ -21,10 +24,10 @@ const MapViewer = () => {
             layers: [
                 standardLayer,
                 cartoBasemaps,
-                currentAirPlaneLayer
+                currentAircraftLayer
             ],
             view: new View({
-                center: [0,0],
+                center: fromLonLat([127.1388684,37.4449168]),
                 zoom: 7,
                 minZoom: 0,
                 maxZoom: 17,
@@ -43,6 +46,32 @@ const MapViewer = () => {
         //         text: true,
         //     })
         // )
+        map.on('pointermove',(event)=>{
+            const pixel = event.pixel;
+            const hit = map.hasFeatureAtPixel(pixel);
+            map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+
+            const features = map.getFeaturesAtPixel(pixel);
+            const hovered = features?.[0] || null;
+
+            const {hoveredAircraft,setHoveredAircraft} = useAirplaneHoverStore.getState();
+
+            
+            if (hovered !== hoveredAircraft) {
+                if (hoveredAircraft) {
+                    (hoveredAircraft as Feature)?.set('hover', false);
+                }
+                if (hovered) {
+                    (hovered as Feature)?.set('hover', true);
+                }
+                setHoveredAircraft(hovered);
+                const source = currentAircraftLayer.getSource();
+                if(source){
+                    source.changed();
+                }
+            }
+            
+        });
         setMap(map);
         return ()=>map.setTarget(undefined);
     },[setMap]);

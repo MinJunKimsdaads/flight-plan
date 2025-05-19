@@ -10,11 +10,16 @@ export const standardLayer = new TileLayer({
 })
 
 //실시간 항공기 맵
-export const currentAirPlaneLayer = new WebGLVectorLayer({
+export const currentAircraftLayer = new WebGLVectorLayer({
     source: new VectorSource(),
     style: {
         'circle-radius': 5,
-        'circle-fill-color': 'rgba(241, 52, 5, 0.8)',
+        'circle-fill-color': [
+            'case',
+            ['==',['get', 'hover'], true],
+            'yellow',
+            'red'
+        ],
     },
 });
 

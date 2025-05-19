@@ -1,0 +1,27 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.rightMenuBtn{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.rightMenuBtnTooltip{
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 10px);
+    transform: translateY(-50%);
+    background-color: $dark-bg;
+    color: $dark-text;
+    width: max-content;
+    height: auto;
+    &.tooltipOn{
+        @include flex-center;
+        padding: 5px;
+        font-size: 12px;
+    }
+    
+}
