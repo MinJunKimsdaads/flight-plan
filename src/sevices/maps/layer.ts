@@ -7,9 +7,8 @@ import { Feature } from "ol";
 import { Point } from "ol/geom";
 import { fromLonLat } from "ol/proj";
 import { FeatureLike } from "ol/Feature";
-import aircraftImg from '@/assets/img/map/aircraft.svg';
-// import aircraftActiveImg from '@/assets/img/map/aircraft_active.svg';
-
+import aircraftImg from '@/assets/img/map/aircraft.png';
+import airportImg from '@/assets/img/map/airport.png';
 
 //기본 맵
 export const standardLayer = new TileLayer({
@@ -29,18 +28,16 @@ export const cartoBasemaps = new TileLayer({
 export const currentAircraftLayer = new WebGLVectorLayer({
     source: new VectorSource(),
     style: {
-        'circle-radius': 5,
-        'circle-fill-color': [
-            'case',
-            ['==',['get', 'hover'], 1],
-            'yellow',
-            'red'
+        'icon-src': aircraftImg,
+        'icon-width': 30,
+        'icon-height': 30,
+        'icon-color': [
+          'case',
+          ['==',['get', 'hover'], 1],
+            'red', // hover on
+            'yellow', // hover off
         ],
-        'icon-src':aircraftImg,
-        'icon-width': 24,
-        'icon-height': 24,
-        'icon-color': 'white',
-        'icon-rotate-with-view': true,
+        'icon-scale': 1,
     },
 });
 
@@ -65,9 +62,15 @@ export const airportLayer = new WebGLVectorLayer({
     .filter(Boolean) as FeatureLike[], // <-- 타입 단언 추가
     }),
   style: {
-    'circle-radius': 6,
-    'circle-fill-color': 'rgba(0, 123, 255, 0.8)',
-    'circle-stroke-color': 'white',
-    'circle-stroke-width': 1.5,
-  },
+        'icon-src': airportImg,
+        'icon-width': 30,
+        'icon-height': 30,
+        'icon-color': [
+          'case',
+          ['==',['get', 'hover'], 1],
+            'red', // hover on
+            'yellow', // hover off
+        ],
+        'icon-scale': 1,
+    },
 });

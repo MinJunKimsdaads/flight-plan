@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
-import { airportLayer, cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/map";
+import { airportLayer, cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/layer";
 import AircraftUpdater from "./AirplaneUpdater";
 import { fromLonLat } from "ol/proj";
 import { useAirplaneHoverStore } from "@/store/aircraftStore";

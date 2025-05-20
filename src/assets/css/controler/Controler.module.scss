@@ -3,7 +3,7 @@
 
 .controlerBox{
     width: 400px;
-    height: 60px;
+    height: 80px;
     @include flex-between;
     background-color: $dark-bg;
     color: $dark-text;
@@ -11,4 +11,6 @@
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
+    padding: 0 15px;
+    border-radius: 10px;
 }

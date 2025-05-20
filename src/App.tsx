@@ -1,4 +1,4 @@
-import Controler from "./components/map/controler/Controler"
+import Controler from "./components/controler/Controler"
 import MapViewer from "./components/map/MapViewer"
 import RightMenu from "./components/RightMenu/RightMenu"
 
