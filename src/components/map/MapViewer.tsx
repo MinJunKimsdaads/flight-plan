@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import {defaults as defaultControls} from "ol/control";
 import 'ol/ol.css';
 import '@/assets/css/ol/control.scss';
-import { airportLayer, cartoBasemaps, currentAircraftLayer, standardLayer } from "@/sevices/maps/layer";
+import { airportLayer, currentAircraftLayer, standardLayer } from "@/sevices/maps/layer";
 import AircraftUpdater from "./AirplaneUpdater";
 import { fromLonLat } from "ol/proj";
 import { useAirplaneHoverStore } from "@/store/aircraftStore";
@@ -23,7 +23,6 @@ const MapViewer = () => {
             target: mapRef.current,
             layers: [
                 standardLayer,
-                cartoBasemaps,
                 airportLayer,
                 currentAircraftLayer
             ],
@@ -39,14 +38,6 @@ const MapViewer = () => {
                 rotate: false,
             }),
         });
-        // map.addControl(
-        //     new ScaleLine({
-        //         units: 'nautical',
-        //         bar: true,
-        //         className: 'absolute bottom-4 right-20 flex items-center',
-        //         text: true,
-        //     })
-        // )
         map.on('pointermove',(event)=>{
             const pixel = event.pixel;
             const hit = map.hasFeatureAtPixel(pixel);

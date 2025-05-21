@@ -1,3 +1,5 @@
+import { useSettingStore } from "@/store/settingStore";
+
 // 전체화면 토글
 export const toggleFullScreen = (flag:boolean) => {
     const elem = document.documentElement;
@@ -19,3 +21,15 @@ export const toggleFullScreen = (flag:boolean) => {
       }
     }
 }
+
+//테마 설정
+export const toggleTheme = (theme:string|null) => {
+  const {setTheme} = useSettingStore.getState();
+  if(theme === 'dark'){
+    setTheme(null);
+  }else{
+    setTheme('dark');
+  }
+};
+
+//

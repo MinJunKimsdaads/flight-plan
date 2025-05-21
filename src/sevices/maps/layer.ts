@@ -10,19 +10,44 @@ import { FeatureLike } from "ol/Feature";
 import aircraftImg from '@/assets/img/map/aircraft.png';
 import airportImg from '@/assets/img/map/airport.png';
 
-//기본 맵
-export const standardLayer = new TileLayer({
-    source: new OSM(),
-})
+//standard map
+export const basemaps = new OSM();
 
 //Carto Basemaps
-export const cartoBasemaps = new TileLayer({
-    source: new XYZ({
-    url: 'https://{a-d}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attributions: '© OpenStreetMap contributors, © CARTO',
-  }),
-})
+export const darkLabelCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
 
+export const darkCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
+
+export const lightLabelCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
+
+export const lightCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
+
+export const voyagerLabelCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/rastertiles/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
+
+export const voyagerCartoBasemaps = new XYZ({
+  url: 'https://{a-d}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',
+  attributions: '© OpenStreetMap contributors, © CARTO',
+});
+
+//기본 맵
+export const standardLayer = new TileLayer({
+    source: basemaps,
+})
 
 //실시간 항공기 맵
 export const currentAircraftLayer = new WebGLVectorLayer({
@@ -69,7 +94,7 @@ export const airportLayer = new WebGLVectorLayer({
           'case',
           ['==',['get', 'hover'], 1],
             'red', // hover on
-            'yellow', // hover off
+            '#0d99ff', // hover off
         ],
         'icon-scale': 1,
     },
