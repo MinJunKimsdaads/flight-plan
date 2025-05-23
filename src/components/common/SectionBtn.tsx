@@ -1,4 +1,4 @@
-const SectionBtn = ({title,isOn}) => {
+const SectionBtn = ({title}) => {
     return(
         <div>
             {title}           
