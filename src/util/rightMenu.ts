@@ -32,4 +32,16 @@ export const toggleTheme = (theme:string|null) => {
   }
 };
 
-//
+//지도 확대
+export const zoomIn = (map) => {
+  const view = map.getView();
+  const zoom = view.getZoom();
+  view.setZoom(zoom + 1);
+};
+
+//지도 축소
+export const zoomOut = (map) => {
+  const view = map.getView();
+  const zoom = view.getZoom();
+  view.setZoom(zoom - 1);
+};

@@ -6,6 +6,9 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $light-bg;
     margin-bottom: 10px;
     border-radius: 3px;

@@ -78,13 +78,26 @@ API 호출 실패 시 재시도
 모바일 대응 인터페이스 (반응형 UI)
 
 멀티언어 지원 (국제 사용자 대상일 경우)
-
-
 https://openskynetwork.github.io/opensky-api/rest.html#all-state-vectors
-
 
 svg to png
 https://svgtopng.com/
 
 refference for svg
 https://www.svgrepo.com/
+
+지도 타일 컬러 변경
+https://openlayers.org/en/latest/examples/cog-stretch.html
+https://openlayers.org/en/latest/examples/cog-style.html
+https://openlayers.org/en/latest/examples/color-manipulation.html
+
+
+기상 api 주소
+- windy
+- openWeather
+
+https://viglino.github.io/ol-ext/
+
+cloud
+https://viglino.github.io/ol-ext/examples/misc/map.control.cloud.html
+
